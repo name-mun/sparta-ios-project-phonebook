@@ -29,17 +29,27 @@ class ViewController: UIViewController {
         return button
     }()
 
+    lazy var phonbookListTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .red
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PhoneBookListTableViewCell.self, forCellReuseIdentifier: PhoneBookListTableViewCell.id)
+        return tableView
+    }()
+
     // MARK: - 초기 설정
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configureUI()
     }
 
     // MARK: - 레이아웃 설정
 
     private func configureUI() {
-        [titleLabel, addButton].forEach {
+        [titleLabel, addButton, phonbookListTableView].forEach {
             view.addSubview($0)
         }
 
@@ -56,6 +66,37 @@ class ViewController: UIViewController {
             $0.height.equalTo(25)
         }
 
+        phonbookListTableView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(25)
+        }
+
+    }
+}
+
+// MARK: - TableViewCell DataSource 설정
+
+extension ViewController: UITableViewDataSource {
+    // tableView 행 갯수 설정
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9 // 테스트 코드
+    }
+
+    // tableView 셀 설정
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneBookListTableViewCell.id, for: indexPath) as? PhoneBookListTableViewCell else { return UITableViewCell() }
+
+        return cell
+    }
+}
+
+// MARK: - TableViewCell Delegate 설정
+
+extension ViewController: UITableViewDelegate {
+    // tableView 행 높이 설정
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }
 
