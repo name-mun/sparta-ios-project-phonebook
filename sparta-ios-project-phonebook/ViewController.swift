@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 
     lazy var phonbookListTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .red
+        tableView.showsVerticalScrollIndicator = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PhoneBookListTableViewCell.self, forCellReuseIdentifier: PhoneBookListTableViewCell.id)
@@ -49,6 +49,8 @@ class ViewController: UIViewController {
     // MARK: - 레이아웃 설정
 
     private func configureUI() {
+        view.backgroundColor = .white
+        
         [titleLabel, addButton, phonbookListTableView].forEach {
             view.addSubview($0)
         }
