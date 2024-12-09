@@ -21,11 +21,12 @@ class ViewController: UIViewController {
         return label
     }()
 
-    let addButton: UIButton = {
+    lazy var addButton: UIButton = {
         let button = UIButton()
         button.setTitle("추가", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -99,6 +100,16 @@ extension ViewController: UITableViewDelegate {
     // tableView 행 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+}
+
+// MARK: - 버튼 클리식 실행
+
+extension ViewController {
+
+    @objc
+    func buttonTapped() {
+        self.navigationController?.pushViewController(PhoneBookViewController(), animated: true)
     }
 }
 
