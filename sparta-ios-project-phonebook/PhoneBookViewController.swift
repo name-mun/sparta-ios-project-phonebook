@@ -11,7 +11,12 @@ import SnapKit
 
 class PhoneBookViewController: UIViewController {
 
-    // MARK: - 프러피티 생성
+    // MARK: - 프로퍼티 생성
+
+    private lazy var navRightItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(buttopnTapped))
+        return button
+    }()
 
     private let profileImage: UIImageView = {
         let image = UIImageView()
@@ -55,8 +60,17 @@ class PhoneBookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        configureNavigation()
         configureUI()
+    }
+
+
+    // MARK: - 네비게이션바 설정
+
+    private func configureNavigation() {
+        navigationItem.rightBarButtonItem = navRightItem
+        navigationItem.title = "연락처 추가"
     }
 
     // MARK: - 레이아웃 설정
@@ -72,7 +86,7 @@ class PhoneBookViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
 
         profileImage.snp.makeConstraints {
-            $0.top.equalTo(safeArea.snp.top).offset(10)
+            $0.top.equalTo(safeArea.snp.top).offset(20)
             $0.width.height.equalTo(150)
             $0.centerX.equalToSuperview()
         }
@@ -93,6 +107,14 @@ class PhoneBookViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(40)
         }
+    }
+}
+
+// MARK: - 버튼 클릭 시 실행
+
+extension PhoneBookViewController {
+    @objc
+    private func buttopnTapped() {
 
     }
 }
