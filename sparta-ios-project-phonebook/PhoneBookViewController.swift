@@ -49,9 +49,13 @@ class PhoneBookViewController: UIViewController {
 
     // MARK: - 초기 설정
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureUI()
     }
 

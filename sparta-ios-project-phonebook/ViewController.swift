@@ -41,6 +41,10 @@ class ViewController: UIViewController {
 
     // MARK: - 초기 설정
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,7 +68,7 @@ class ViewController: UIViewController {
         }
 
         addButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.top)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
             $0.trailing.equalTo(safeArea.snp.trailing).inset(20)
             $0.height.equalTo(25)
         }
