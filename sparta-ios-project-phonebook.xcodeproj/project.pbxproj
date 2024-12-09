@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA36C0432D03143900CFA1FA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA36C0422D03143900CFA1FA /* SnapKit */; };
+		BAB5C7F12D06F09400285BA9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BAB5C7F02D06F09400285BA9 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA36C0432D03143900CFA1FA /* SnapKit in Frameworks */,
+				BAB5C7F12D06F09400285BA9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +133,7 @@
 			name = "sparta-ios-project-phonebook";
 			packageProductDependencies = (
 				BA36C0422D03143900CFA1FA /* SnapKit */,
+				BAB5C7F02D06F09400285BA9 /* Alamofire */,
 			);
 			productName = "sparta-ios-project-phonebook";
 			productReference = BAFDCB8A2D02EDCD00B98F30 /* sparta-ios-project-phonebook.app */;
@@ -216,6 +219,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BA36C0412D03143900CFA1FA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BAB5C7EF2D06F09400285BA9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BAFDCB8B2D02EDCD00B98F30 /* Products */;
@@ -580,6 +584,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		BAB5C7EF2D06F09400285BA9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -587,6 +599,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA36C0412D03143900CFA1FA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		BAB5C7F02D06F09400285BA9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAB5C7EF2D06F09400285BA9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
