@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     // MARK: - 프로퍼티 생성
 
+    private var dataSource = [PhoneBook]()
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "친구 목록"
@@ -43,6 +45,9 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        guard let dataSource = PhoneBookDataManager.shared.readAllData() else { return }
+        self.dataSource = dataSource
+        phonbookListTableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -87,12 +92,14 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     // tableView 행 갯수 설정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9 // 테스트 코드
+        return dataSource.count
     }
 
     // tableView 셀 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneBookListTableViewCell.id, for: indexPath) as? PhoneBookListTableViewCell else { return UITableViewCell() }
+
+        cell.configure(dataSource[indexPath.row])
 
         return cell
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Alamofire
+
 final class PhoneBookListTableViewCell: UITableViewCell {
 
     // MARK: - 프로퍼티 생성
@@ -67,8 +69,17 @@ final class PhoneBookListTableViewCell: UITableViewCell {
         profileNumberLabel.snp.makeConstraints {
             $0.top.bottom.trailing.equalToSuperview().inset(10)
         }
-
-
     }
 
+    func configure(_ phoneBook: PhoneBook) {
+        profileNameLabel.text = phoneBook.name
+        profileNumberLabel.text = phoneBook.phoneNumber
+        AF.request(phoneBook.profileImage!).responseData { response in
+            if let data = response.data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.profileImage.image = image
+                }
+            }
+        }
+    }
 }
