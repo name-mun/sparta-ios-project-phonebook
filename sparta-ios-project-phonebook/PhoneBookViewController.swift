@@ -14,8 +14,10 @@ class PhoneBookViewController: UIViewController {
 
     // MARK: - 프로퍼티 생성
 
+    private var imageURL: String = ""
+
     private lazy var navRightItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(buttopnTapped))
+        let button = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(navButtonTapped))
         return button
     }()
 
@@ -134,7 +136,7 @@ class PhoneBookViewController: UIViewController {
             switch result {
             case .success(let result):
                 guard let imageUrl = URL(string: result.sprites.frontDefault) else { return }
-
+                imageURL = result.sprites.frontDefault
                 AF.request(imageUrl).responseData { response in
                     if let data = response.data, let image = UIImage(data: data) {
                         DispatchQueue.main.async {
@@ -156,6 +158,14 @@ extension PhoneBookViewController {
     @objc
     private func buttopnTapped() {
         GetPocketmonImage()
+    }
+
+    @objc
+    private func navButtonTapped() {
+        // 데이터 생성
+        PhoneBookDataManager.shared.createData(name: nameTextView.text, phoneNumber: numberTextView.text, profileImage: imageURL)
+
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
