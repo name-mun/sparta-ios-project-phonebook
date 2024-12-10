@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     // MARK: - 프로퍼티 생성
 
-    private var dataSource = [PhoneBook]()
+    private var dataSource: NSArray = [PhoneBook]() as NSArray
 
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -45,8 +45,12 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
-        guard let dataSource = PhoneBookDataManager.shared.readAllData() else { return }
-        self.dataSource = dataSource
+        guard let dataSource = PhoneBookDataManager.shared.readAllData() as? NSArray else { return }
+
+        // "name"을 기준으로 오름차순 정렬
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        self.dataSource = dataSource.sortedArray(using: [sortDescriptor]) as NSArray
+
         phonbookListTableView.reloadData()
     }
 
@@ -99,7 +103,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PhoneBookListTableViewCell.id, for: indexPath) as? PhoneBookListTableViewCell else { return UITableViewCell() }
 
-        cell.configure(dataSource[indexPath.row])
+        cell.configure(dataSource[indexPath.row] as! PhoneBook)
 
         return cell
     }
