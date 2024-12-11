@@ -14,6 +14,8 @@ class PhoneBookViewController: UIViewController {
 
     // MARK: - 프로퍼티 생성
 
+    var prepareData: PhoneBook? // 테이블뷰셀에 대한 정보를 전달 받는 변수
+
     private var imageURL: String = ""
 
     private lazy var navRightItem: UIBarButtonItem = {
@@ -47,7 +49,7 @@ class PhoneBookViewController: UIViewController {
         return textView
     }()
 
-    private let numberTextView: UITextView = {
+    let numberTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 15)
         textView.layer.cornerRadius = 10
@@ -60,6 +62,18 @@ class PhoneBookViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+
+        // 전달 받은 데이터가 있으면 뷰에 띄움
+        guard let data = prepareData else { return }
+        nameTextView.text = data.name
+        numberTextView.text = data.phoneNumber
+        AF.request(data.profileImage!).responseData { response in
+            if let data = response.data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.profileImage.image = image
+                }
+            }
+        }
     }
 
     override func viewDidLoad() {
