@@ -116,6 +116,13 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = PhoneBookViewController()
+        nextVC.prepareData = dataSource[indexPath.row] as? PhoneBook // 테이블뷰 셀 데이터 전달
+        self.navigationController?.pushViewController(nextVC, animated: true)
+
+    }
 }
 
 // MARK: - 버튼 클리식 실행
