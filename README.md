@@ -25,15 +25,15 @@
 ### :art: UI Framworks
 - UIKit
 - AutoLayout
-
 <br><br>
+
 ## :sparkles: 주요기능
 - **연락처 생성**: 사용자가 입력한 값을 기반으로 `CoreData`에 새 연락처를 저장합니다. 
 - **연락처 수정**: `id`를 사용해 특정 연락처를 검색한 뒤, 수정된 값을 저장합니다. 
 - **연락처 로드**: `CoreData`에 저장된 모든 연락처를 불러와 화면에 표시합니다.
 - **랜덤 이미지 로드**: `포켓몬 API`를 사용해 랜덤 이미지를 가져옵니다.
-
 <br><br>
+
 ## :computer: 개발 환경
 - **Xcode**: 16.1
 - **iOS Deployment Target**: iOS 18.1
@@ -57,3 +57,6 @@ cd sparta-ios-project-phonebook
 <br><br>
 ## :bug: 트러블 슈팅
 👉 [네비게이션바 트러블 슈팅](https://name-mun.tistory.com/53)
+
+👉 [코어데이터 생성 트러블 슈팅](https://name-mun.tistory.com/49)
+
