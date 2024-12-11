@@ -89,7 +89,12 @@ class PhoneBookViewController: UIViewController {
 
     private func configureNavigation() {
         navigationItem.rightBarButtonItem = navRightItem
-        navigationItem.title = "연락처 추가"
+
+        if let data = prepareData {
+            navigationItem.title = data.name
+        } else {
+            navigationItem.title = "연락처 추가"
+        }
     }
 
     // MARK: - 레이아웃 설정
