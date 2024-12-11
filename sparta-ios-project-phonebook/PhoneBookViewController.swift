@@ -67,6 +67,7 @@ class PhoneBookViewController: UIViewController {
         guard let data = prepareData else { return }
         nameTextView.text = data.name
         numberTextView.text = data.phoneNumber
+        imageURL = data.profileImage!
         AF.request(data.profileImage!).responseData { response in
             if let data = response.data, let image = UIImage(data: data) {
                 DispatchQueue.main.async {
@@ -176,8 +177,12 @@ extension PhoneBookViewController {
 
     @objc
     private func navButtonTapped() {
-        // 데이터 생성
-        PhoneBookDataManager.shared.createData(name: nameTextView.text, phoneNumber: numberTextView.text, profileImage: imageURL)
+        // prepareData가 있으면 update, 아니면 create
+        if let data = prepareData {
+            PhoneBookDataManager.shared.updateData(id: data.id!, name: nameTextView.text, phoneNumber: numberTextView.text, profileImage: imageURL)
+        } else {
+            PhoneBookDataManager.shared.createData(name: nameTextView.text, phoneNumber: numberTextView.text, profileImage: imageURL)
+        }
 
         self.navigationController?.popViewController(animated: true)
     }
