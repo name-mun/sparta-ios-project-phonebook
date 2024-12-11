@@ -28,6 +28,7 @@ class PhoneBookViewController: UIViewController {
         image.layer.borderColor = UIColor.black.cgColor
         image.layer.borderWidth = 1 
         image.layer.cornerRadius = 150 / 2
+        image.clipsToBounds = true // 넘치는 영역 잘라냄
         return image
     }()
 
