@@ -16,6 +16,7 @@ extension PhoneBook {
         return NSFetchRequest<PhoneBook>(entityName: "PhoneBook")
     }
 
+    @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var profileImage: String?
