@@ -20,6 +20,7 @@ final class PhoneBookListTableViewCell: UITableViewCell {
         image.layer.borderWidth = 1
         image.layer.borderColor = UIColor.black.cgColor
         image.layer.cornerRadius = 60 / 2
+        image.clipsToBounds = true // 넘치는 영역 잘라냄
         image.backgroundColor = .white
         return image
     }()
