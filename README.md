@@ -58,5 +58,5 @@ cd sparta-ios-project-phonebook
 ## :bug: 트러블 슈팅
 👉 [네비게이션바 트러블 슈팅](https://name-mun.tistory.com/53)
 
-👉 [코어데이터 생성 트러블 슈팅](https://name-mun.tistory.com/49)
+👉 [코어데이터 생성 트러블 슈팅](https://name-mun.tistory.com/55)
 
